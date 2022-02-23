@@ -28,7 +28,22 @@ hello-world   latest    feb5d9fea6a5   4 months ago   13.3kB
 
 ### Exercise 1.3: Secret message
 
-`'You can find the source code here: https://github.com/docker-hy'`
+```bash
+$ docker run -d --name looper devopsdockeruh/simple-web-service:ubuntu
+afb6dc147a4a696d083b326ef1143ec49f05568b1f6cb1b6b9e384fe9c85cea1
+
+$ docker exec -it looper bash
+root@afb6dc147a4a:/usr/src/app# ls
+server  text.log
+
+root@afb6dc147a4a:/usr/src/app# cat text.log
+2022-02-23 09:23:37 +0000 UTC
+2022-02-23 09:23:39 +0000 UTC
+2022-02-23 09:23:41 +0000 UTC
+2022-02-23 09:23:43 +0000 UTC
+2022-02-23 09:23:45 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+```
 
 ### Exercise 1.4: Missing dependencies
 
