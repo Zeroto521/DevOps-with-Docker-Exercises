@@ -306,6 +306,9 @@ $ docker run -d --name looper devopsdockeruh/simple-web-service:alpine
 cd955eafe7a3e252f9d38703c515513d4c874c708dc3b46559313103cca66b8f
 
 $ docker exec -it looper sh
+/usr/src/app # ls
+server  text.log
+
 /usr/src/app # cat text.log
 2022-02-23 09:18:22 +0000 UTC
 2022-02-23 09:18:24 +0000 UTC
