@@ -15,5 +15,10 @@ This project is the exercises of the [DevOps with Docker 2022](https://devopswit
   - [Running and stopping containers](https://devopswithdocker.com/part-1/2-running-and-stopping)
     - Exercise 1.3: Secret message
     - Exercise 1.4: Missing dependencies
+  - [In-depth dive to images](https://devopswithdocker.com/part-1/3-in-depth-dive-to-images)
+    - Exercise 1.5: Sizes of images
+    - Exercise 1.6: Hello Docker Hub
+    - Exercise 1.7: Two line Dockerfile
+    - Exercise 1.8: Image for script
 - [Part 2](https://devopswithdocker.com/part-2)
 - [Part 3](https://devopswithdocker.com/part-3)
