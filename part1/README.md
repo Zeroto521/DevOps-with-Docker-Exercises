@@ -340,8 +340,7 @@ You found the correct password. Secret message is:
 ### Exercise 1.7: Two line Dockerfile
 
 ```bash
-$ cd 1.7
-$ docker build . -t web-server
+$ docker build ./1.7 -t web-server
 [+] Building 0.4s (5/5) FINISHED
  => [internal] load build definition from Dockerfile                                          0.0s
  => => transferring dockerfile: 96B                                                           0.0s
