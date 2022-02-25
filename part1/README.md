@@ -402,3 +402,10 @@ Searching..
 </body></html>
 : not found: 1:
 ```
+
+### Exercise 1.9: Volumes
+
+```bash
+$ docker run -v ${pwd}/1.9/text.log:/usr/src/app/text.log -d -it devopsdockeruh/simple-web-service
+aa250a24f3b7e5dd0e7df545e9e4ef6d50f9ca6079b80f089f3f7d594288ea30
+```
