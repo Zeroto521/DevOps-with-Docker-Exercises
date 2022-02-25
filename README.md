@@ -20,5 +20,8 @@ This project is the exercises of the [DevOps with Docker 2022](https://devopswit
     - Exercise 1.6: Hello Docker Hub
     - Exercise 1.7: Two line Dockerfile
     - Exercise 1.8: Image for script
+  - [Interacting with the container via volumes and ports](https://devopswithdocker.com/part-1/5-volumes-and-ports)\
+    - Exercise 1.9: Volumes
+    - Exercise 1.10: Ports open
 - [Part 2](https://devopswithdocker.com/part-2)
 - [Part 3](https://devopswithdocker.com/part-3)
