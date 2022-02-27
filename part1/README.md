@@ -430,7 +430,6 @@ $ docker run -p 127.0.0.1:8080:8080 web-server
 
 ```bash
 $ docker build ./1.11 -t spring
-docker build ./1.11 -t spring
 [+] Building 2233.9s (12/12) FINISHED
  => [internal] load build definition from Dockerfile                                             0.0s 
  => => transferring dockerfile: 32B                                                              0.0s 
