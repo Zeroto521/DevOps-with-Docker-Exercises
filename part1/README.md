@@ -425,3 +425,54 @@ $ docker run -p -p 127.0.0.1:8080:8080 web-server
 [GIN] 2022/02/25 - 02:55:19 | 200 |        63.3µs |      172.17.0.1 | GET      "/"
 [GIN] 2022/02/25 - 02:55:20 | 200 |        29.8µs |      172.17.0.1 | GET      "/favicon.ico"
 ```
+
+### Exercise 1.11: Spring
+
+```bash
+$ docker build ./1.11 -t spring
+docker build ./1.11 -t spring
+[+] Building 2233.9s (12/12) FINISHED
+ => [internal] load build definition from Dockerfile                                             0.0s 
+ => => transferring dockerfile: 32B                                                              0.0s 
+ => [internal] load .dockerignore                                                                0.0s 
+ => => transferring context: 2B                                                                  0.0s 
+ => [internal] load metadata for docker.io/library/openjdk:8                                     2.0s 
+ => CACHED [2/7] WORKDIR /usr/src/app                                                            0.0s 
+ => CACHED [3/7] COPY spring-example-project .                                                   0.0s 
+ => CACHED [4/7] RUN apt-get update                                                              0.0s 
+ => CACHED [5/7] RUN apt-get install -y dos2unix                                                 0.0s 
+ => CACHED [6/7] RUN find . -type f -print0 | xargs -0 dos2unix                                  0.0s 
+ => [7/7] RUN ./mvnw package                                                                  2230.7s 
+ => exporting to image                                                                           0.9s 
+ => => exporting layers                                                                          0.8s 
+ => => writing image sha256:20b789e21f68090c4e5a2be00d9a3b593464ef1f388644a7fb4b920f928d68f2     0.0s 
+ => => naming to docker.io/library/spring                                                        0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+$ docker run -p 127.0.0.1:8080:8080 spring
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2022-02-27 02:49:50.916  INFO 7 --- [           main] c.d.dockerexample.DemoApplication        : Starting DemoApplication v1.1.3 on 065222c44ad7 with PID 7 (/usr/src/app/target/docker-example-1.1.3.jar started by root in /usr/src/app)
+2022-02-27 02:49:50.921  INFO 7 --- [           main] c.d.dockerexample.DemoApplication        : No active profile set, falling back to default profiles: default
+2022-02-27 02:49:53.640  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-02-27 02:49:53.717  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-02-27 02:49:53.718  INFO 7 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2022-02-27 02:49:53.755  INFO 7 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+2022-02-27 02:49:53.941  INFO 7 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-02-27 02:49:53.942  INFO 7 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2904 ms
+2022-02-27 02:49:54.695  INFO 7 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-02-27 02:49:55.085  INFO 7 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-02-27 02:49:55.442  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-02-27 02:49:55.451  INFO 7 --- [           main] c.d.dockerexample.DemoApplication        : Started DemoApplication in 5.382 seconds (JVM running for 6.133)
+2022-02-27 02:50:12.080  INFO 7 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-02-27 02:50:12.080  INFO 7 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-02-27 02:50:12.092  INFO 7 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+
+```
