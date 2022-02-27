@@ -413,7 +413,7 @@ aa250a24f3b7e5dd0e7df545e9e4ef6d50f9ca6079b80f089f3f7d594288ea30
 ### Exercise 1.10: Ports open
 
 ```bash
-$ docker run -p -p 127.0.0.1:8080:8080 web-server
+$ docker run -p 127.0.0.1:8080:8080 web-server
 [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
 [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
