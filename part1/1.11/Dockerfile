@@ -4,7 +4,7 @@ EXPOSE 8080
 
 WORKDIR /usr/src/app
 
-COPY spring-example-project .
+COPY . .
 
 RUN apt-get update
 RUN apt-get install -y dos2unix
