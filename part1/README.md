@@ -473,5 +473,36 @@ $ docker run -p 127.0.0.1:8080:8080 spring
 2022-02-27 02:50:12.080  INFO 7 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-02-27 02:50:12.080  INFO 7 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2022-02-27 02:50:12.092  INFO 7 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+```
 
+### Exercise 1.12: Hello, frontend!
+
+```bash
+$ docker build ./1.12 -t frontend
+[+] Building 210.2s (15/15) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                      0.1s 
+ => => transferring dockerfile: 345B                                                                                                                                      0.0s 
+ => [internal] load .dockerignore                                                                                                                                         0.0s 
+ => => transferring context: 34B                                                                                                                                          0.0s 
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                          0.0s 
+ => [ 1/10] FROM docker.io/library/ubuntu:latest                                                                                                                          0.0s 
+ => [internal] load build context                                                                                                                                         0.0s 
+ => => transferring context: 1.21kB                                                                                                                                       0.0s 
+ => CACHED [ 3/10] COPY . .                                                                                                                                               0.0s 
+ => CACHED [ 4/10] RUN apt-get update                                                                                                                                     0.0s 
+ => CACHED [ 5/10] RUN apt-get install -y curl                                                                                                                            0.0s 
+ => CACHED [ 6/10] RUN curl -sL https://deb.nodesource.com/setup_16.x | bash                                                                                              0.0s 
+ => CACHED [ 7/10] RUN apt install -y nodejs                                                                                                                              0.0s 
+ => [ 8/10] RUN npm install                                                                                                                                             150.7s 
+ => [ 9/10] RUN npm run build                                                                                                                                            34.2s 
+ => [10/10] RUN npm install -g serve                                                                                                                                      7.6s 
+ => exporting to image                                                                                                                                                   17.5s 
+ => => exporting layers                                                                                                                                                  17.5s 
+ => => writing image sha256:09a4c0fe37793a77a6cb8a3090afac28941d3b5b1edfab4ba871bd767a4283d2                                                                              0.0s 
+ => => naming to docker.io/library/frontend                                                                                                                               0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+$ docker run -p 127.0.0.1:5000:5000 frontend
+INFO: Accepting connections at http://localhost:5000
 ```
