@@ -428,6 +428,8 @@ $ docker run -p 127.0.0.1:8080:8080 web-server
 
 ### Exercise 1.11: Spring
 
+The source codes under [1.11](1.11) folder are copied from [spring-example-project](https://github.com/docker-hy/material-applications/tree/main/spring-example-project) except Dockerfile.
+
 ```bash
 $ docker build ./1.11 -t spring
 [+] Building 2233.9s (12/12) FINISHED
@@ -477,6 +479,8 @@ $ docker run -p 127.0.0.1:8080:8080 spring
 
 ### Exercise 1.12: Hello, frontend!
 
+The source codes under [1.12](1.12) folder are copied from [example-frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) except Dockerfile.
+
 ```bash
 $ docker build ./1.12 -t frontend
 [+] Building 210.2s (15/15) FINISHED
@@ -508,6 +512,8 @@ INFO: Accepting connections at http://localhost:5000
 ```
 
 ### Exercise 1.13: Hello, backend!
+
+The source codes under [1.13](1.13) folder are copied from [example-backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) except Dockerfile.
 
 ```bash
 $ docker build ./1.13 -t backend
