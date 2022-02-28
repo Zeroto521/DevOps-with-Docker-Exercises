@@ -549,3 +549,59 @@ $ docker run -p 127.0.0.1:8080:8080 backend
 [GIN] 2022/02/28 - 01:26:56 | 404 |        11.9µs |      172.17.0.1 | GET      "/favicon.ico"
 [GIN] 2022/02/28 - 01:27:01 | 200 |        18.6µs |      172.17.0.1 | GET      "/ping"
 ```
+
+### 1.14: Environment
+
+```bash
+$ docker build ./1.12 -t frontend
+[+] Building 536.8s (15/15) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                0.0s 
+ => => transferring dockerfile: 396B                                                                                                                0.0s 
+ => [internal] load .dockerignore                                                                                                                   0.0s 
+ => => transferring context: 34B                                                                                                                    0.0s 
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                    0.0s 
+ => [ 1/10] FROM docker.io/library/ubuntu:latest                                                                                                    0.0s 
+ => [internal] load build context                                                                                                                   0.0s 
+ => => transferring context: 1.55kB                                                                                                                 0.0s 
+ => CACHED [ 2/10] WORKDIR /usr/src/app                                                                                                             0.0s 
+ => [ 4/10] RUN apt-get update                                                                                                                     73.4s 
+ => [ 5/10] RUN apt-get install -y curl                                                                                                            32.4s
+ => [ 6/10] RUN curl -sL https://deb.nodesource.com/setup_16.x | bash                                                                              55.9s
+ => [ 7/10] RUN apt install -y nodejs                                                                                                              14.9s
+ => [ 8/10] RUN npm install                                                                                                                       313.2s
+ => [ 9/10] RUN npm run build                                                                                                                      28.6s
+ => [10/10] RUN npm install -g serve                                                                                                                7.0s
+ => exporting to image                                                                                                                             10.7s
+ => => exporting layers                                                                                                                            10.7s
+ => => writing image sha256:24aba9dd2c0eec05cea9ed7e87abfb2d1f38790def5262c0fe69ebe4054f598f                                                        0.0s
+ => => naming to docker.io/library/frontend                                                                                                         0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+$ docker build ./1.13 -t backend
+[+] Building 36.4s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                0.1s 
+ => => transferring dockerfile: 261B                                                                                                                0.0s 
+ => [internal] load .dockerignore                                                                                                                   0.0s 
+ => => transferring context: 34B                                                                                                                    0.0s 
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                      0.0s 
+ => [internal] load build context                                                                                                                   0.0s 
+ => => transferring context: 499B                                                                                                                   0.0s 
+ => CACHED [2/6] WORKDIR /usr/src/app                                                                                                               0.0s 
+ => CACHED [3/6] COPY . .                                                                                                                           0.0s 
+ => [4/6] RUN go env -w GOPROXY=https://goproxy.cn                                                                                                  0.6s 
+ => [5/6] RUN go build                                                                                                                             22.2s 
+ => [6/6] RUN go test                                                                                                                              11.0s 
+ => exporting to image                                                                                                                              2.1s 
+ => => exporting layers                                                                                                                             2.1s 
+ => => writing image sha256:e62ef56b7b6b0fa820fa414476f5f35dd431925baf41300030630a1c58492c5c                                                        0.0s 
+ => => naming to docker.io/library/backend                                                                                                          0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+$ docker run -d -p 127.0.0.1:5000:5000 --name frontend frontend
+d3d276e71a9523e20458e87421ab86f9cdc138a79199cfd56f44afe1a8050017
+
+$ docker run -d -p 127.0.0.1:8080:8080 --name backend backend
+e6bdc7c5b25d204b7023524ca41930d17c9d61958509f2d1cc5d1929cbdbc7e3
+```
