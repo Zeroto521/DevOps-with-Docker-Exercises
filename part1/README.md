@@ -506,3 +506,44 @@ Use 'docker scan' to run Snyk tests against images to find vulnerabilities and l
 $ docker run -p 127.0.0.1:5000:5000 frontend
 INFO: Accepting connections at http://localhost:5000
 ```
+
+### Exercise 1.13: Hello, backend!
+
+```bash
+$ docker build ./1.13 -t backend
+[+] Building 63.6s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                      0.0s 
+ => => transferring dockerfile: 447B                                                                                                                                      0.0s 
+ => [internal] load .dockerignore                                                                                                                                         0.0s 
+ => => transferring context: 34B                                                                                                                                          0.0s 
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                                            0.0s 
+ => [1/6] FROM docker.io/library/golang:1.16                                                                                                                              0.0s 
+ => [internal] load build context                                                                                                                                         0.0s 
+ => => transferring context: 499B                                                                                                                                         0.0s 
+ => CACHED [3/6] COPY . .                                                                                                                                                 0.0s 
+ => [4/6] RUN go env -w GOPROXY=https://goproxy.cn                                                                                                                        0.6s 
+ => [5/6] RUN go build                                                                                                                                                   21.8s 
+ => [6/6] RUN go test                                                                                                                                                    29.1s 
+ => exporting to image                                                                                                                                                   10.9s 
+ => => exporting layers                                                                                                                                                  10.7s 
+ => => naming to docker.io/library/backend                                                                                                                                0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+$ docker run -p 127.0.0.1:8080:8080 backend
+[Ex 2.4+] REDIS_HOST env was not passed so redis connection is not initialized
+[Ex 2.6+] POSTGRES_HOST env was not passed so postgres connection is not initialized
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:   export GIN_MODE=release
+ - using code:  gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /ping                     --> server/router.pingpong (4 handlers)
+[GIN-debug] GET    /messages                 --> server/controller.GetMessages (4 handlers)
+[GIN-debug] POST   /messages                 --> server/controller.CreateMessage (4 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/02/28 - 01:26:54 | 404 |          93µs |      172.17.0.1 | GET      "/"
+[GIN] 2022/02/28 - 01:26:56 | 404 |        11.9µs |      172.17.0.1 | GET      "/favicon.ico"
+[GIN] 2022/02/28 - 01:27:01 | 200 |        18.6µs |      172.17.0.1 | GET      "/ping"
+```
