@@ -511,22 +511,24 @@ INFO: Accepting connections at http://localhost:5000
 
 ```bash
 $ docker build ./1.13 -t backend
-[+] Building 63.6s (11/11) FINISHED
- => [internal] load build definition from Dockerfile                                                                                                                      0.0s 
- => => transferring dockerfile: 447B                                                                                                                                      0.0s 
- => [internal] load .dockerignore                                                                                                                                         0.0s 
- => => transferring context: 34B                                                                                                                                          0.0s 
- => [internal] load metadata for docker.io/library/golang:1.16                                                                                                            0.0s 
- => [1/6] FROM docker.io/library/golang:1.16                                                                                                                              0.0s 
- => [internal] load build context                                                                                                                                         0.0s 
- => => transferring context: 499B                                                                                                                                         0.0s 
- => CACHED [3/6] COPY . .                                                                                                                                                 0.0s 
- => [4/6] RUN go env -w GOPROXY=https://goproxy.cn                                                                                                                        0.6s 
- => [5/6] RUN go build                                                                                                                                                   21.8s 
- => [6/6] RUN go test                                                                                                                                                    29.1s 
- => exporting to image                                                                                                                                                   10.9s 
- => => exporting layers                                                                                                                                                  10.7s 
- => => naming to docker.io/library/backend                                                                                                                                0.0s 
+[+] Building 0.3s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                0.0s 
+ => => transferring dockerfile: 217B                                                                                                                0.0s 
+ => [internal] load .dockerignore                                                                                                                   0.0s 
+ => => transferring context: 34B                                                                                                                    0.0s 
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                      0.0s 
+ => [1/6] FROM docker.io/library/golang:1.16                                                                                                        0.0s 
+ => [internal] load build context                                                                                                                   0.0s 
+ => => transferring context: 499B                                                                                                                   0.0s 
+ => CACHED [2/6] WORKDIR /usr/src/app                                                                                                               0.0s 
+ => CACHED [3/6] COPY . .                                                                                                                           0.0s 
+ => CACHED [4/6] RUN go env -w GOPROXY=https://goproxy.cn                                                                                           0.0s 
+ => CACHED [5/6] RUN go build                                                                                                                       0.0s 
+ => CACHED [6/6] RUN go test                                                                                                                        0.0s 
+ => exporting to image                                                                                                                              0.1s 
+ => => exporting layers                                                                                                                             0.0s 
+ => => writing image sha256:89d7f959be856bbdf075a745d8156e880a14b19879eda11e40ff9fab39a1cd87                                                        0.0s 
+ => => naming to docker.io/library/backend                                                                                                          0.0s 
 
 Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
 
