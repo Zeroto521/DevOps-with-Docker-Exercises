@@ -615,3 +615,47 @@ e6bdc7c5b25d204b7023524ca41930d17c9d61958509f2d1cc5d1929cbdbc7e3
 ### Exercise 1.15: Homework
 
 Please see [zeroto521/curler](https://hub.docker.com/r/zeroto521/curler).
+
+### Exercise 1.16: Heroku
+
+Please see devops-with-docker-exercise.herokuapp.com
+
+```bash
+$ docker pull registry.heroku.com
+Using default tag: latest
+latest: Pulling from devopsdockeruh/coursepage
+59bf1c3509f3: Already exists
+66fcb0eb5bed: Pull complete
+564b5778c99c: Pull complete
+596dbe9943ae: Pull complete
+cea1aa9397b1: Pull complete
+60d3dcca6f10: Pull complete
+Digest: sha256:8e8b3117fe9c50b5d8abacb9fac265d6c762d319a4fa61db96b85d7310fc3512
+Status: Downloaded newer image for devopsdockeruh/coursepage:latest
+docker.io/devopsdockeruh/coursepage:latest
+
+$ docker tag devopsdockeruh/coursepage registry.heroku.com/devops-with-docker-exercise/web
+
+$ docker push registry.heroku.com/devops-with-docker-exercise/web
+Using default tag: latest
+The push refers to repository [registry.heroku.com/devops-with-docker-exercise/web]
+6f413faad0c5: Layer already exists
+e15245eff772: Layer already exists
+25c4d12b64e7: Layer already exists
+1d454e07796f: Layer already exists
+970073eeaee3: Pushed
+8d3ac3489996: Layer already exists
+latest: digest: sha256:8e8b3117fe9c50b5d8abacb9fac265d6c762d319a4fa61db96b85d7310fc3512 size: 1580
+
+$ heroku login
+heroku: Press any key to open up the browser to login or q to exit:
+Opening browser to https://cli-auth.heroku.com/auth/cli/browser/xxx...xxx
+Logging in... done
+Logged in as address@domain.com
+
+$ heroku container:login
+Login Succeeded
+
+$ heroku container:release web --app devops-with-docker-exercise
+Releasing images web to devops-with-docker-exercise... done
+```
