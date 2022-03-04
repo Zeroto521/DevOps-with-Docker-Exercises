@@ -31,4 +31,19 @@ This project is the exercises of the [DevOps with Docker 2022](https://devopswit
     - Exercise 1.15: Homework
     - Exercise 1.16: Heroku
 - [Part 2](https://devopswithdocker.com/part-2)
+  - [Migrating to docker compose](https://devopswithdocker.com/part-2/1-migrating-to-docker-compose/)
+    - Exercise 2.1
+    - Exercise 2.2
+    - Exercise 2.3
+  - [Docker networking](https://devopswithdocker.com/part-2/2-docker-networking)
+    - Exercise 2.4
+    - Exercise 2.5
+  - [Volumes in action](https://devopswithdocker.com/part-2/3-volumes-in-action)
+    - Exercise 2.6
+    - Exercise 2.7
+    - Exercise 2.8
+    - Exercise 2.9
+    - Exercise 2.10
+  - [Containers in development](https://devopswithdocker.com/part-2/4-containers-in-development)
+    - Exercise 2.11
 - [Part 3](https://devopswithdocker.com/part-3)
