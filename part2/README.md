@@ -419,3 +419,121 @@ load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:
 25-compute-1   | Calculated 9 + 9: 18
 load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:41:08 +0000] "POST / HTTP/1.1" 200 40 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
 ```
+
+### Exercise 2.6
+
+```bash
+$ cd 2.6
+$ docker-compose up
+[+] Running 14/14
+ - postgres-db Pulled                                                                                                                                   107.2s 
+   - f7a1c6dad281 Already exists                                                                                                                          0.0s 
+   - 77c22623b5a6 Pull complete                                                                                                                           7.3s 
+   - 0f6a6a85d014 Pull complete                                                                                                                           7.5s 
+   - 6012728e8256 Pull complete                                                                                                                           8.2s 
+   - 1eca9143e721 Pull complete                                                                                                                          29.6s 
+   - 598625d1c828 Pull complete                                                                                                                          29.8s 
+   - ec548f0dc89b Pull complete                                                                                                                          30.0s 
+   - 10c57d7e0b40 Pull complete                                                                                                                          30.1s 
+   - 6b54020a98bb Pull complete                                                                                                                         100.1s 
+   - 5fb4de1f64de Pull complete                                                                                                                         100.3s 
+   - 19248ca3a367 Pull complete                                                                                                                         100.4s 
+   - 1fbbf10b9826 Pull complete                                                                                                                         100.6s 
+   - 745f153e9d8d Pull complete                                                                                                                         100.7s 
+[+] Building 47.0s (27/27) FINISHED
+ => [26_frontend internal] load build definition from Dockerfile                                                                                          0.1s
+ => => transferring dockerfile: 396B                                                                                                                      0.0s 
+ => [26_backend internal] load build definition from Dockerfile                                                                                           0.1s 
+ => => transferring dockerfile: 239B                                                                                                                      0.0s 
+ => [26_frontend internal] load .dockerignore                                                                                                             0.1s
+ => => transferring context: 90B                                                                                                                          0.0s 
+ => [26_backend internal] load .dockerignore                                                                                                              0.1s 
+ => => transferring context: 118B                                                                                                                         0.0s 
+ => [26_frontend internal] load metadata for docker.io/library/ubuntu:latest                                                                              4.4s
+ => [26_backend internal] load metadata for docker.io/library/golang:1.16                                                                                 5.4s 
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                                             0.0s
+ => [auth] library/golang:pull token for registry-1.docker.io                                                                                             0.0s
+ => [26_frontend internal] load build context                                                                                                             0.7s
+ => => transferring context: 1.21kB                                                                                                                       0.0s 
+ => [26_frontend  1/10] FROM docker.io/library/ubuntu:latest@sha256:8ae9bafbb64f63a50caab98fd3a5e37b3eb837a3e0780b78e5218e63193961f9                      0.0s
+ => CACHED [26_frontend  2/10] WORKDIR /usr/src/app                                                                                                       0.0s
+ => CACHED [26_frontend  3/10] COPY . .                                                                                                                   0.0s 
+ => CACHED [26_frontend  4/10] RUN apt-get update                                                                                                         0.0s 
+ => CACHED [26_frontend  5/10] RUN apt-get install -y curl                                                                                                0.0s 
+ => CACHED [26_frontend  6/10] RUN curl -sL https://deb.nodesource.com/setup_16.x | bash                                                                  0.0s 
+ => CACHED [26_frontend  7/10] RUN apt install -y nodejs                                                                                                  0.0s 
+ => CACHED [26_frontend  8/10] RUN npm install                                                                                                            0.0s
+ => CACHED [26_frontend  9/10] RUN npm run build                                                                                                          0.0s 
+ => CACHED [26_frontend 10/10] RUN npm install -g serve                                                                                                   0.0s 
+ => [26_backend] exporting to image                                                                                                                       2.1s 
+ => => exporting layers                                                                                                                                   2.0s 
+ => => writing image sha256:2f3a87720f238433dbacf5f66b714bf1d5541a2e69f1db2d5459916e4105fe34                                                              0.0s 
+ => => naming to docker.io/library/26_frontend                                                                                                            0.0s 
+ => => writing image sha256:eb248cb2d636d946a2b9d930cb3bf53e280b31145b3947cce52e88366caf04f2                                                              0.0s 
+ => => naming to docker.io/library/26_backend                                                                                                             0.0s 
+ => [26_backend internal] load build context                                                                                                              0.1s 
+ => => transferring context: 29.50kB                                                                                                                      0.0s 
+ => [26_backend 1/6] FROM docker.io/library/golang:1.16@sha256:995b095588ef5e635aec9bdc97cd2a40f29ddec0525461eeba062a9487e82bcd                           0.1s 
+ => => resolve docker.io/library/golang:1.16@sha256:995b095588ef5e635aec9bdc97cd2a40f29ddec0525461eeba062a9487e82bcd                                      0.1s 
+ => CACHED [26_backend 2/6] WORKDIR /usr/src/app                                                                                                          0.0s 
+ => [26_backend 3/6] COPY . .                                                                                                                             0.3s 
+ => [26_backend 4/6] RUN go env -w GOPROXY=https://goproxy.cn                                                                                             0.8s 
+ => [26_backend 5/6] RUN go build                                                                                                                        28.3s 
+ => [26_backend 6/6] RUN go test                                                                                                                          9.6s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+[+] Running 4/4
+ - Container redis     Created                                                                                                                                                  0.0s
+ - Container postgres  Recreated                                                                                                                                                0.6s
+ - Container backend   Recreated                                                                                                                                                0.6s
+ - Container frontend  Recreated                                                                                                                                                0.5s
+Attaching to backend, frontend, postgres, redis
+redis     | 1:C 05 Mar 2022 11:00:49.746 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis     | 1:C 05 Mar 2022 11:00:49.746 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+redis     | 1:C 05 Mar 2022 11:00:49.746 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis     | 1:M 05 Mar 2022 11:00:49.747 * monotonic clock: POSIX clock_gettime
+redis     | 1:M 05 Mar 2022 11:00:49.749 * Running mode=standalone, port=6379.
+redis     | 1:M 05 Mar 2022 11:00:49.749 # Server initialized
+redis     | 1:M 05 Mar 2022 11:00:49.749 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis     | 1:M 05 Mar 2022 11:00:49.755 * Loading RDB produced by version 6.2.6
+redis     | 1:M 05 Mar 2022 11:00:49.755 * RDB age 18 seconds
+redis     | 1:M 05 Mar 2022 11:00:49.755 * RDB memory usage when created 0.79 Mb
+redis     | 1:M 05 Mar 2022 11:00:49.756 # Done loading RDB, keys loaded: 1, keys expired: 0.
+redis     | 1:M 05 Mar 2022 11:00:49.756 * DB loaded from disk: 0.001 seconds
+redis     | 1:M 05 Mar 2022 11:00:49.756 * Ready to accept connections
+postgres  | 
+postgres  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres  |
+postgres  | 2022-03-05 11:00:49.829 UTC [1] LOG:  starting PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres  | 2022-03-05 11:00:49.829 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2022-03-05 11:00:49.829 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2022-03-05 11:00:49.842 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2022-03-05 11:00:49.857 UTC [27] LOG:  database system was shut down at 2022-03-05 11:00:31 UTC
+postgres  | 2022-03-05 11:00:49.869 UTC [1] LOG:  database system is ready to accept connections
+backend   | [Ex 2.4+] Initializing redis client
+backend   | [Ex 2.4+] Connection to redis initialized, ready to ping pong.
+backend   | [Ex 2.6+] Initializing postgres connection with envs
+backend   |             POSTGRES_HOST      postgres,
+backend   |             POSTGRES_USER:     postgres,
+backend   |             POSTGRES_PASSWORD: postgres,
+backend   |             POSTGRES_DATABASE: postgres
+backend   |             to postgres:5432
+backend   | [Ex 2.6+] Connection to postgres initialized, ready to ping pong.
+backend   | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+backend   |
+backend   | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+backend   |  - using env:       export GIN_MODE=release
+backend   |  - using code:      gin.SetMode(gin.ReleaseMode)
+backend   |
+backend   | [GIN-debug] GET    /ping                     --> server/router.pingpong (4 handlers)
+backend   | [GIN-debug] GET    /messages                 --> server/controller.GetMessages (4 handlers)
+backend   | [GIN-debug] POST   /messages                 --> server/controller.CreateMessage (4 handlers)
+backend   | [GIN-debug] Listening and serving HTTP on :8080
+frontend  | INFO: Accepting connections at http://localhost:5000
+backend   | &{1 pong}
+backend   | [GIN] 2022/03/05 - 11:01:08 | 200 |      1.8936ms |      172.23.0.1 | GET      "/ping?postgres=true"
+backend   | [GIN] 2022/03/05 - 11:01:24 | 200 |     32.3052ms |      172.23.0.1 | POST     "/messages"
+backend   | [GIN] 2022/03/05 - 11:01:24 | 200 |       748.6µs |      172.23.0.1 | GET      "/messages"
+backend   | [GIN] 2022/03/05 - 11:01:26 | 200 |      1.9737ms |      172.23.0.1 | GET      "/messages"
+```
