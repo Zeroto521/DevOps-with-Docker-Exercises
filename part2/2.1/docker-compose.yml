@@ -6,4 +6,4 @@ services:
     build: .
     volumes:
       - .:/mydir
-    container_name: web-service
+    container_name: secret-message
