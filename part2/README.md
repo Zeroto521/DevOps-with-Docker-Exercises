@@ -247,3 +247,175 @@ frontend     | INFO: Accepting connections at http://localhost:5000
 backend      | ping pong
 backend      | [GIN] 2022/03/05 - 07:24:32 | 200 |      1.8851ms |      172.23.0.1 | GET      "/ping?redis=true"
 ```
+
+### Exercise 2.5
+
+The source codes under [2.5](2.5) folder are copied from [scaling-exercise](https://github.com/docker-hy/material-applications/tree/main/scaling-exercise).
+
+```bash
+$ cd 2.5
+$ docker-compose up --scale compute=2
+[+] Running 7/8
+ - load-balancer Error                                                                                                                                    5.1s
+ - calculator Pulled                                                                                                                                     10.1s
+   - 59bf1c3509f3 Already exists                                                                                                                          0.0s
+   - b616ac4a64bf Already exists                                                                                                                          0.0s
+   - 3b9e1e8ab9ce Already exists                                                                                                                          0.0s
+   - 3507ddbf3909 Already exists                                                                                                                          0.0s
+   - 8215d3b1f05c Pull complete                                                                                                                           4.6s
+   - 3bdef4317ef4 Pull complete                                                                                                                           4.7s
+[+] Building 3.1s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                      0.0s
+ => => transferring dockerfile: 31B                                                                                                                       0.0s
+ => [internal] load .dockerignore                                                                                                                         0.0s
+ => => transferring context: 2B                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/jwilder/nginx-proxy:latest                                                                                     2.8s
+ => [auth] jwilder/nginx-proxy:pull token for registry-1.docker.io                                                                                        0.0s
+ => CACHED [1/1] FROM docker.io/jwilder/nginx-proxy@sha256:9b0d210a7d16800404f5dac64e9039711f2a39f60e6f7f9ad068392f4708e29b                               0.0s
+ => exporting to image                                                                                                                                    0.1s 
+ => => exporting layers                                                                                                                                   0.0s 
+ => => writing image sha256:9d2a8880945d5ab3237b264a9b631f90abd92a111c30727e4c38b131e361a6b4                                                              0.0s 
+ => => naming to docker.io/library/load-balancer                                                                                                          0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[+] Running 5/5
+ - Network 25_default       Created                                                                                                                       0.1s 
+ - Container load-balancer  Created                                                                                                                       0.4s 
+ - Container calculator     Created                                                                                                                       0.4s 
+ - Container 25-compute-2   Created                                                                                                                       0.4s 
+ - Container 25-compute-1   Created                                                                                                                       0.4s 
+Attaching to 25-compute-1, 25-compute-2, calculator, load-balancer
+load-balancer  | Info: running nginx-proxy version 0.10.1-31-g993e5f8
+load-balancer  | Setting up DH Parameters..
+load-balancer  | forego      | starting dockergen.1 on port 5000
+load-balancer  | forego      | starting nginx.1 on port 5100
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: using the "epoll" event method
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: nginx/1.21.6
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: OS: Linux 5.10.60.1-microsoft-standard-WSL2
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker processes
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 26
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 27
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 28
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 29
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 30
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 31
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 32
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 33
+25-compute-2   | I am alive in port 3000!
+load-balancer  | dockergen.1 | 2022/03/05 08:40:22 Template error: open /etc/nginx/certs: no such file or directory
+load-balancer  | dockergen.1 | 2022/03/05 08:40:22 Generated '/etc/nginx/conf.d/default.conf' from 4 containers
+load-balancer  | dockergen.1 | 2022/03/05 08:40:22 Running 'nginx -s reload'
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 1 (SIGHUP) received from 36, reconfiguring
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: reconfiguring
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: using the "epoll" event method
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker processes
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 41
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 42
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 43
+load-balancer  | dockergen.1 | 2022/03/05 08:40:22 Watching docker events
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 44
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 45
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 46
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 47
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: start worker process 48
+25-compute-1   | I am alive in port 3000!
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 26#26: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 28#28: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 27#27: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 29#29: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 29#29: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 29#29: exit
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 26#26: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 28#28: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 26#26: exit
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 28#28: exit
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 27#27: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 30#30: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 27#27: exit
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 31#31: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 30#30: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 30#30: exit
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 32#32: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 33#33: gracefully shutting down
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 31#31: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 31#31: exit
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 32#32: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 32#32: exit
+load-balancer  | dockergen.1 | 2022/03/05 08:40:22 Template error: open /etc/nginx/certs: no such file or directory
+load-balancer  | dockergen.1 | 2022/03/05 08:40:22 Contents of /etc/nginx/conf.d/default.conf did not change. Skipping notification 'nginx -s reload'
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 33#33: exiting
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 33#33: exit
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 17 (SIGCHLD) received from 29
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 29 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 29 (SIGIO) received
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 17 (SIGCHLD) received from 31
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 31 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 29 (SIGIO) received
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 17 (SIGCHLD) received from 28
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 28 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 32 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 29 (SIGIO) received
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 17 (SIGCHLD) received from 32
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 26 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 27 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 29 (SIGIO) received
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 17 (SIGCHLD) received from 30
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 30 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: worker process 33 exited with code 0
+load-balancer  | nginx.1     | 2022/03/05 08:40:22 [notice] 22#22: signal 29 (SIGIO) received
+calculator     | INFO: Accepting connections at http://localhost:3000
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:50 +0000] "OPTIONS / HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+25-compute-2   | Added to queue
+25-compute-2   | Started resolving loop
+25-compute-2   | Started calculations for 5 + 5
+25-compute-2   | Added to queue
+25-compute-1   | Added to queue
+25-compute-1   | Started resolving loop
+25-compute-1   | Started calculations for 1 + 1
+25-compute-1   | Added to queue
+25-compute-1   | Added to queue
+25-compute-1   | Added to queue
+25-compute-2   | Calculated 5 + 5: 10
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:53 +0000] "POST / HTTP/1.1" 200 40 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+25-compute-2   | Started calculations for 7 + 7
+25-compute-1   | Added to queue
+25-compute-1   | Calculated 1 + 1: 2
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:53 +0000] "POST / HTTP/1.1" 200 39 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+25-compute-1   | Started calculations for 2 + 2
+25-compute-2   | Added to queue
+25-compute-2   | Calculated 7 + 7: 14
+25-compute-2   | Started calculations for 6 + 6
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:57 +0000] "POST / HTTP/1.1" 200 40 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+25-compute-2   | Added to queue
+25-compute-1   | Calculated 2 + 2: 4
+25-compute-1   | Started calculations for 3 + 3
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:40:57 +0000] "POST / HTTP/1.1" 200 39 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+25-compute-2   | Added to queue
+25-compute-2   | Calculated 6 + 6: 12
+25-compute-2   | Started calculations for 10 + 10
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:41:00 +0000] "POST / HTTP/1.1" 200 40 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+25-compute-1   | Calculated 3 + 3: 6
+25-compute-1   | Started calculations for 4 + 4
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:41:00 +0000] "POST / HTTP/1.1" 200 39 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+25-compute-2   | Calculated 10 + 10: 20
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:41:03 +0000] "POST / HTTP/1.1" 200 42 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+25-compute-2   | Started calculations for 8 + 8
+25-compute-1   | Calculated 4 + 4: 8
+25-compute-1   | Started calculations for 9 + 9
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:41:04 +0000] "POST / HTTP/1.1" 200 39 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+25-compute-2   | Calculated 8 + 8: 16
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:41:07 +0000] "POST / HTTP/1.1" 200 40 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.2:3000"
+25-compute-1   | Calculated 9 + 9: 18
+load-balancer  | nginx.1     | compute.localtest.me 172.22.0.1 - - [05/Mar/2022:08:41:08 +0000] "POST / HTTP/1.1" 200 40 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36" "172.22.0.3:3000"
+```
