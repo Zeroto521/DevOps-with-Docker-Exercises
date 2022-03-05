@@ -537,3 +537,7 @@ backend   | [GIN] 2022/03/05 - 11:01:24 | 200 |     32.3052ms |      172.23.0.1 
 backend   | [GIN] 2022/03/05 - 11:01:24 | 200 |       748.6µs |      172.23.0.1 | GET      "/messages"
 backend   | [GIN] 2022/03/05 - 11:01:26 | 200 |      1.9737ms |      172.23.0.1 | GET      "/messages"
 ```
+
+### Exercise 2.7
+
+The source codes under [2.7](2.7) folder are copied from [ml-kurkkumopo-frontend](https://github.com/docker-hy/ml-kurkkumopo-frontend), [ml-kurkkumopo-backend](https://github.com/docker-hy/ml-kurkkumopo-backend) and [ml-kurkkumopo-training](https://github.com/docker-hy/ml-kurkkumopo-training).
