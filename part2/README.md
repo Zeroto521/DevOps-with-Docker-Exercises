@@ -28,7 +28,7 @@ Use 'docker scan' to run Snyk tests against images to find vulnerabilities and l
 
 $ docker-compose run secret-message
 [+] Running 1/0
- - Network 21_default  Created                                                                                                                            0.1s
+ - Network 21_default  Created                                                                                                        0.1s
 Starting log output
 Wrote text to /mydir/text.log
 Wrote text to /mydir/text.log
