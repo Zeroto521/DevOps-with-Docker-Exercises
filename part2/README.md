@@ -161,3 +161,89 @@ backend   | [GIN-debug] Listening and serving HTTP on :8080
 frontend  | INFO: Accepting connections at http://localhost:5000
 backend   | [GIN] 2022/03/05 - 05:55:36 | 200 |        82.8µs |      172.22.0.1 | GET      "/ping"
 ```
+
+### Exercise 2.4
+
+```bash
+$ cd 2.4
+$ docker-compose up
+[+] Running 7/7
+ - redis Pulled                                                                                                                                         101.1s
+   - f7a1c6dad281 Pull complete                                                                                                                          90.9s
+   - c5f81eaec564 Pull complete                                                                                                                          91.0s
+   - 2be237d3defa Pull complete                                                                                                                          91.2s 
+   - 1640a11de2e5 Pull complete                                                                                                                          91.9s 
+   - 9138edee9512 Pull complete                                                                                                                          92.0s 
+   - c62664237d8c Pull complete                                                                                                                          92.1s 
+[+] Building 4.7s (27/27) FINISHED
+ => [24_backend internal] load build definition from Dockerfile                                                                                           0.1s
+ => => transferring dockerfile: 239B                                                                                                                      0.0s 
+ => [24_frontend internal] load build definition from Dockerfile                                                                                          0.1s 
+ => => transferring dockerfile: 396B                                                                                                                      0.0s 
+ => [24_backend internal] load .dockerignore                                                                                                              0.1s
+ => => transferring context: 118B                                                                                                                         0.0s 
+ => [24_frontend internal] load .dockerignore                                                                                                             0.0s
+ => => transferring context: 90B                                                                                                                          0.0s 
+ => [24_backend internal] load metadata for docker.io/library/golang:1.16                                                                                 4.1s 
+ => [24_frontend internal] load metadata for docker.io/library/ubuntu:latest                                                                              4.0s
+ => [auth] library/golang:pull token for registry-1.docker.io                                                                                             0.0s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                                             0.0s 
+ => [24_frontend  1/10] FROM docker.io/library/ubuntu:latest@sha256:8ae9bafbb64f63a50caab98fd3a5e37b3eb837a3e0780b78e5218e63193961f9                      0.0s
+ => [24_frontend internal] load build context                                                                                                             0.1s 
+ => => transferring context: 1.21kB                                                                                                                       0.0s 
+ => [24_backend internal] load build context                                                                                                              0.1s 
+ => => transferring context: 499B                                                                                                                         0.0s 
+ => [24_backend 1/6] FROM docker.io/library/golang:1.16@sha256:d06eed568f39329de3a3b760f2c815e64c86c1d4fc74ad5fbd5f0b5866fe1a73                           0.0s 
+ => CACHED [24_backend 2/6] WORKDIR /usr/src/app                                                                                                          0.0s
+ => CACHED [24_backend 3/6] COPY . .                                                                                                                      0.0s 
+ => CACHED [24_backend 4/6] RUN go env -w GOPROXY=https://goproxy.cn                                                                                      0.0s 
+ => CACHED [24_backend 5/6] RUN go build                                                                                                                  0.0s
+ => CACHED [24_backend 6/6] RUN go test                                                                                                                   0.0s 
+ => CACHED [24_frontend  2/10] WORKDIR /usr/src/app                                                                                                       0.0s 
+ => CACHED [24_frontend  3/10] COPY . .                                                                                                                   0.0s 
+ => CACHED [24_frontend  4/10] RUN apt-get update                                                                                                         0.0s 
+ => CACHED [24_frontend  5/10] RUN apt-get install -y curl                                                                                                0.0s 
+ => CACHED [24_frontend  6/10] RUN curl -sL https://deb.nodesource.com/setup_16.x | bash                                                                  0.0s 
+ => CACHED [24_frontend  7/10] RUN apt install -y nodejs                                                                                                  0.0s 
+ => CACHED [24_frontend  8/10] RUN npm install                                                                                                            0.0s 
+ => CACHED [24_frontend  9/10] RUN npm run build                                                                                                          0.0s 
+ => CACHED [24_frontend 10/10] RUN npm install -g serve                                                                                                   0.0s 
+ => [24_backend] exporting to image                                                                                                                       0.2s 
+ => => exporting layers                                                                                                                                   0.0s 
+ => => writing image sha256:2f3a87720f238433dbacf5f66b714bf1d5541a2e69f1db2d5459916e4105fe34                                                              0.0s 
+ => => writing image sha256:c0d163eb86c2e3a0e6f2a8bb0b0aaded2978918cf403cb1e5786b9215c5e471c                                                              0.1s 
+ => => naming to docker.io/library/24_frontend                                                                                                            0.0s 
+ => => naming to docker.io/library/24_backend                                                                                                             0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[+] Running 4/4
+ - Network 24_default     Created                                                                                                                         0.1s 
+ - Container redis-cache  Created                                                                                                                         1.0s
+ - Container backend      Created                                                                                                                         0.2s
+ - Container frontend     Created                                                                                                                         0.2s
+Attaching to backend, frontend, redis-cache
+redis-cache  | 1:C 05 Mar 2022 07:24:24.295 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-cache  | 1:C 05 Mar 2022 07:24:24.295 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-cache  | 1:C 05 Mar 2022 07:24:24.295 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-cache  | 1:M 05 Mar 2022 07:24:24.296 * monotonic clock: POSIX clock_gettime
+redis-cache  | 1:M 05 Mar 2022 07:24:24.298 * Running mode=standalone, port=6379.
+redis-cache  | 1:M 05 Mar 2022 07:24:24.298 # Server initialized
+redis-cache  | 1:M 05 Mar 2022 07:24:24.298 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis-cache  | 1:M 05 Mar 2022 07:24:24.299 * Ready to accept connections
+backend      | [Ex 2.4+] Initializing redis client
+backend      | [Ex 2.4+] Connection to redis initialized, ready to ping pong.
+backend      | [Ex 2.6+] POSTGRES_HOST env was not passed so postgres connection is not initialized
+backend      | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+backend      |
+backend      | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+backend      |  - using env:    export GIN_MODE=release
+backend      |  - using code:   gin.SetMode(gin.ReleaseMode)
+backend      |
+backend      | [GIN-debug] GET    /ping                     --> server/router.pingpong (4 handlers)
+backend      | [GIN-debug] GET    /messages                 --> server/controller.GetMessages (4 handlers)
+backend      | [GIN-debug] POST   /messages                 --> server/controller.CreateMessage (4 handlers)
+backend      | [GIN-debug] Listening and serving HTTP on :8080
+frontend     | INFO: Accepting connections at http://localhost:5000
+backend      | ping pong
+backend      | [GIN] 2022/03/05 - 07:24:32 | 200 |      1.8851ms |      172.23.0.1 | GET      "/ping?redis=true"
+```
