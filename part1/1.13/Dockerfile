@@ -1,4 +1,3 @@
-# FROM ubuntu:latest
 FROM golang:1.16
 
 EXPOSE 8080
