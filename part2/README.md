@@ -50,3 +50,23 @@ web-service  | Wrote text to /mydir/text.log
 web-service  | Wrote text to /mydir/text.log
 web-service  | Wrote text to /mydir/text.log
 ```
+
+### Exercise 2.2
+
+```bash
+$ cd 2.2
+$ docker-compose up
+[+] Running 1/1
+ - Container web-service  Created                                                                                             0.2s
+Attaching to web-service
+web-service  | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+web-service  | 
+web-service  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+web-service  |  - using env:    export GIN_MODE=release
+web-service  |  - using code:   gin.SetMode(gin.ReleaseMode)
+web-service  |
+web-service  | [GIN-debug] GET    /*path                    --> server.Start.func1 (3 handlers)
+web-service  | [GIN-debug] Listening and serving HTTP on :8080
+web-service  | [GIN] 2022/03/05 - 02:22:39 | 200 |        59.6µs |      172.21.0.1 | GET      "/"
+web-service  | [GIN] 2022/03/05 - 02:22:39 | 200 |        31.4µs |      172.21.0.1 | GET      "/favicon.ico"
+```
