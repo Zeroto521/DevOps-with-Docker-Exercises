@@ -693,22 +693,29 @@ $ docker-compose up
 
 Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
 
-[+] Running 6/6
- - Network 28_default  Created                                                                                                                            0.1s
- - Container nginx     Created                                                                                                                            0.5s
- - Container postgres  Created                                                                                                                            0.5s
- - Container backend   Created                                                                                                                            0.4s
- - Container redis     Created                                                                                                                            0.4s
+[+] Running 5/5
+ - Container nginx     Created                                                                                                                            0.3s 
+ - Container backend   Created                                                                                                                            0.3s 
+ - Container redis     Created                                                                                                                            0.3s 
+ - Container postgres  Created                                                                                                                            0.3s 
  - Container frontend  Created                                                                                                                            0.3s
 Attaching to backend, frontend, nginx, postgres, redis
-redis     | 1:C 06 Mar 2022 04:34:29.016 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-redis     | 1:C 06 Mar 2022 04:34:29.016 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
-redis     | 1:C 06 Mar 2022 04:34:29.016 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-redis     | 1:M 06 Mar 2022 04:34:29.018 * monotonic clock: POSIX clock_gettime
-redis     | 1:M 06 Mar 2022 04:34:29.020 * Running mode=standalone, port=6379.
-redis     | 1:M 06 Mar 2022 04:34:29.020 # Server initialized
-redis     | 1:M 06 Mar 2022 04:34:29.020 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
-redis     | 1:M 06 Mar 2022 04:34:29.021 * Ready to accept connections
+redis     | 1:C 06 Mar 2022 06:15:50.012 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis     | 1:C 06 Mar 2022 06:15:50.012 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+redis     | 1:C 06 Mar 2022 06:15:50.012 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis     | 1:M 06 Mar 2022 06:15:50.013 * monotonic clock: POSIX clock_gettime
+redis     | 1:M 06 Mar 2022 06:15:50.014 * Running mode=standalone, port=6379.
+redis     | 1:M 06 Mar 2022 06:15:50.015 # Server initialized
+redis     | 1:M 06 Mar 2022 06:15:50.015 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis     | 1:M 06 Mar 2022 06:15:50.015 * Ready to accept connections
+nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
 postgres  | The files belonging to this database system will be owned by user "postgres".
 postgres  | This user must also own the server process.
 postgres  |
@@ -721,27 +728,19 @@ postgres  |
 postgres  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
 postgres  | creating subdirectories ... ok
 postgres  | selecting dynamic shared memory implementation ... posix
-postgres  | selecting default max_connections ... 100
-postgres  | selecting default shared_buffers ... 128MB
-nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-postgres  | selecting default time zone ... Etc/UTC
-postgres  | creating configuration files ... ok
-nginx     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
 backend   | [Ex 2.4+] Initializing redis client
 backend   | [Ex 2.4+] Connection to redis initialized, ready to ping pong.
 backend   | [Ex 2.6+] Initializing postgres connection with envs
 backend   |             POSTGRES_HOST      postgres,
 backend   |             POSTGRES_USER:     postgres,
+postgres  | selecting default max_connections ... 100
 backend   |             POSTGRES_PASSWORD: postgres,
 backend   |             POSTGRES_DATABASE: postgres
 backend   |             to postgres:5432
 backend   | [Ex 2.6+] Connection to postgres failed! Retrying...
+postgres  | selecting default shared_buffers ... 128MB
+postgres  | selecting default time zone ... Etc/UTC
+postgres  | creating configuration files ... ok
 postgres  | running bootstrap script ... ok
 postgres  | performing post-bootstrap initialization ... ok
 postgres  | syncing data to disk ... ok
@@ -754,31 +753,31 @@ postgres  |
 postgres  | initdb: warning: enabling "trust" authentication for local connections
 postgres  | You can change this by editing pg_hba.conf or using the option -A, or
 postgres  | --auth-local and --auth-host, the next time you run initdb.
-postgres  | waiting for server to start....2022-03-06 04:34:31.512 UTC [48] LOG:  starting PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-postgres  | 2022-03-06 04:34:31.518 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2022-03-06 04:34:31.539 UTC [49] LOG:  database system was shut down at 2022-03-06 04:34:30 UTC
-postgres  | 2022-03-06 04:34:31.550 UTC [48] LOG:  database system is ready to accept connections
+postgres  | waiting for server to start....2022-03-06 06:15:52.360 UTC [48] LOG:  starting PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres  | 2022-03-06 06:15:52.366 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2022-03-06 06:15:52.391 UTC [49] LOG:  database system was shut down at 2022-03-06 06:15:51 UTC
+postgres  | 2022-03-06 06:15:52.404 UTC [48] LOG:  database system is ready to accept connections
 postgres  |  done
 postgres  | server started
 postgres  | 
 postgres  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
 postgres  |
-postgres  | 2022-03-06 04:34:31.657 UTC [48] LOG:  received fast shutdown request
-postgres  | waiting for server to shut down....2022-03-06 04:34:31.664 UTC [48] LOG:  aborting any active transactions
-postgres  | 2022-03-06 04:34:31.667 UTC [48] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-postgres  | 2022-03-06 04:34:31.667 UTC [50] LOG:  shutting down
-postgres  | 2022-03-06 04:34:31.718 UTC [48] LOG:  database system is shut down
+postgres  | 2022-03-06 06:15:52.552 UTC [48] LOG:  received fast shutdown request
+postgres  | waiting for server to shut down....2022-03-06 06:15:52.568 UTC [48] LOG:  aborting any active transactions
+postgres  | 2022-03-06 06:15:52.571 UTC [48] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+postgres  | 2022-03-06 06:15:52.576 UTC [50] LOG:  shutting down
+postgres  | 2022-03-06 06:15:52.644 UTC [48] LOG:  database system is shut down
 postgres  |  done
 postgres  | server stopped
 postgres  |
 postgres  | PostgreSQL init process complete; ready for start up.
 postgres  |
-postgres  | 2022-03-06 04:34:31.796 UTC [1] LOG:  starting PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-postgres  | 2022-03-06 04:34:31.796 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres  | 2022-03-06 04:34:31.796 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres  | 2022-03-06 04:34:31.809 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2022-03-06 04:34:31.825 UTC [60] LOG:  database system was shut down at 2022-03-06 04:34:31 UTC
-postgres  | 2022-03-06 04:34:31.836 UTC [1] LOG:  database system is ready to accept connections
+postgres  | 2022-03-06 06:15:52.707 UTC [1] LOG:  starting PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres  | 2022-03-06 06:15:52.708 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2022-03-06 06:15:52.708 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2022-03-06 06:15:52.724 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2022-03-06 06:15:52.745 UTC [60] LOG:  database system was shut down at 2022-03-06 06:15:52 UTC
+postgres  | 2022-03-06 06:15:52.761 UTC [1] LOG:  database system is ready to accept connections
 frontend  | INFO: Accepting connections at http://localhost:5000
 backend   | [Ex 2.6+] Connection to postgres initialized, ready to ping pong.
 backend   | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
@@ -791,21 +790,16 @@ backend   | [GIN-debug] GET    /ping                     --> server/router.pingp
 backend   | [GIN-debug] GET    /messages                 --> server/controller.GetMessages (4 handlers)
 backend   | [GIN-debug] POST   /messages                 --> server/controller.CreateMessage (4 handlers)
 backend   | [GIN-debug] Listening and serving HTTP on :8080
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:38 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:38 +0000] "GET /static/css/main.9ee2e4df.chunk.css HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:38 +0000] "GET /static/js/main.fa448335.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:38 +0000] "GET /static/js/2.43ca3586.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:38 +0000] "GET /static/media/toskalogo.c0f35cf0.svg HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:38 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:38 +0000] "GET /manifest.json HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-backend   | [GIN] 2022/03/06 - 04:34:42 | 200 |       100.3µs |      172.29.0.4 | GET      "/ping"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:34:42 +0000] "GET /api/ping HTTP/1.1" 200 4 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:37:46 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:37:46 +0000] "GET /static/js/2.43ca3586.chunk.js HTTP/1.1" 304 0 "http://colasloth.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:37:46 +0000] "GET /static/css/main.9ee2e4df.chunk.css HTTP/1.1" 304 0 "http://colasloth.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:37:46 +0000] "GET /static/js/main.fa448335.chunk.js HTTP/1.1" 304 0 "http://colasloth.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:37:47 +0000] "GET /static/media/toskalogo.c0f35cf0.svg HTTP/1.1" 304 0 "http://colasloth.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:37:48 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://colasloth.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
-backend   | [GIN] 2022/03/06 - 04:37:52 | 200 |        29.2µs |      172.29.0.4 | GET      "/ping"
-nginx     | 172.29.0.1 - - [06/Mar/2022:04:37:52 +0000] "GET /api/ping HTTP/1.1" 200 4 "http://colasloth.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:03 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:03 +0000] "GET /static/css/main.9ee2e4df.chunk.css HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:03 +0000] "GET /static/js/main.fa448335.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:03 +0000] "GET /static/js/2.43ca3586.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:03 +0000] "GET /static/media/toskalogo.c0f35cf0.svg HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:03 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:03 +0000] "GET /manifest.json HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:08 +0000] "GET /api/ping HTTP/1.1" 200 4 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+backend   | [GIN] 2022/03/06 - 06:16:08 | 200 |         111µs |      172.18.0.4 | GET      "/ping"
+backend   | [GIN] 2022/03/06 - 06:16:11 | 200 |        27.4µs |      172.18.0.4 | GET      "/ping"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:11 +0000] "GET /api/ping HTTP/1.1" 200 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:12 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost/api/ping" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
 ```
