@@ -803,3 +803,153 @@ backend   | [GIN] 2022/03/06 - 06:16:11 | 200 |        27.4µs |      172.18.0.4
 nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:11 +0000] "GET /api/ping HTTP/1.1" 200 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
 nginx     | 172.18.0.1 - - [06/Mar/2022:06:16:12 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost/api/ping" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
 ```
+
+### Exercise 2.9
+
+```bash
+$ cd 2.9
+$ docker-compose up
+[+] Running 6/6
+ - Network 29_default  Created                                                                                                                            0.1s 
+ - Container postgres  Created                                                                                                                            0.4s
+ - Container backend   Created                                                                                                                            0.4s 
+ - Container redis     Created                                                                                                                            0.4s 
+ - Container nginx     Created                                                                                                                            0.4s 
+ - Container frontend  Created                                                                                                                            0.3s
+Attaching to backend, frontend, nginx, postgres, redis
+redis     | 1:C 06 Mar 2022 06:45:59.065 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis     | 1:C 06 Mar 2022 06:45:59.065 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+redis     | 1:C 06 Mar 2022 06:45:59.065 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis     | 1:M 06 Mar 2022 06:45:59.066 * monotonic clock: POSIX clock_gettime
+redis     | 1:M 06 Mar 2022 06:45:59.070 * Running mode=standalone, port=6379.
+redis     | 1:M 06 Mar 2022 06:45:59.070 # Server initialized
+redis     | 1:M 06 Mar 2022 06:45:59.070 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis     | 1:M 06 Mar 2022 06:45:59.071 * Ready to accept connections
+postgres  | The files belonging to this database system will be owned by user "postgres".
+postgres  | This user must also own the server process.
+postgres  |
+postgres  | The database cluster will be initialized with locale "en_US.utf8".
+postgres  | The default database encoding has accordingly been set to "UTF8".
+postgres  | The default text search configuration will be set to "english".
+postgres  |
+postgres  | Data page checksums are disabled.
+postgres  |
+postgres  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres  | creating subdirectories ... ok
+postgres  | selecting dynamic shared memory implementation ... posix
+nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+backend   | [Ex 2.4+] Initializing redis client
+backend   | [Ex 2.4+] Connection to redis initialized, ready to ping pong.
+backend   | [Ex 2.6+] Initializing postgres connection with envs
+backend   |             POSTGRES_HOST      postgres,
+backend   |             POSTGRES_USER:     postgres,
+backend   |             POSTGRES_PASSWORD: postgres,
+backend   |             POSTGRES_DATABASE: postgres
+backend   |             to postgres:5432
+backend   | [Ex 2.6+] Connection to postgres failed! Retrying...
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres  | selecting default max_connections ... 100
+postgres  | selecting default shared_buffers ... 128MB
+postgres  | selecting default time zone ... Etc/UTC
+postgres  | creating configuration files ... ok
+backend   | [Ex 2.6+] Connection to postgres failed! Retrying...
+frontend  | INFO: Accepting connections at http://localhost:5000
+postgres  | running bootstrap script ... ok
+backend   | [Ex 2.6+] Connection to postgres failed! Retrying...
+backend   | [Ex 2.6+] Connection to postgres failed! Retrying...
+postgres  | performing post-bootstrap initialization ... ok
+backend   | [Ex 2.6+] Connection to postgres failed! Retrying...
+postgres  | syncing data to disk ... ok
+postgres  | 
+postgres  |
+postgres  | Success. You can now start the database server using:
+postgres  |
+postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres  |
+postgres  | initdb: warning: enabling "trust" authentication for local connections
+postgres  | You can change this by editing pg_hba.conf or using the option -A, or
+postgres  | --auth-local and --auth-host, the next time you run initdb.
+postgres  | waiting for server to start....2022-03-06 06:46:21.524 UTC [50] LOG:  starting PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres  | 2022-03-06 06:46:21.532 UTC [50] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2022-03-06 06:46:21.624 UTC [51] LOG:  database system was shut down at 2022-03-06 06:46:15 UTC
+postgres  | 2022-03-06 06:46:21.710 UTC [50] LOG:  database system is ready to accept connections
+postgres  |  done
+postgres  | server started
+postgres  | 
+postgres  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres  |
+postgres  | 2022-03-06 06:46:22.028 UTC [50] LOG:  received fast shutdown request
+postgres  | waiting for server to shut down....2022-03-06 06:46:22.039 UTC [50] LOG:  aborting any active transactions
+postgres  | 2022-03-06 06:46:22.044 UTC [50] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+postgres  | 2022-03-06 06:46:22.054 UTC [52] LOG:  shutting down
+postgres  | 2022-03-06 06:46:22.286 UTC [50] LOG:  database system is shut down
+postgres  |  done
+postgres  | server stopped
+postgres  |
+postgres  | PostgreSQL init process complete; ready for start up.
+postgres  |
+postgres  | 2022-03-06 06:46:22.468 UTC [1] LOG:  starting PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres  | 2022-03-06 06:46:22.469 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2022-03-06 06:46:22.469 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2022-03-06 06:46:22.487 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2022-03-06 06:46:22.556 UTC [62] LOG:  database system was shut down at 2022-03-06 06:46:22 UTC
+postgres  | 2022-03-06 06:46:22.632 UTC [1] LOG:  database system is ready to accept connections
+backend   | [Ex 2.6+] Connection to postgres initialized, ready to ping pong.
+backend   | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+backend   |
+backend   | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+backend   |  - using env:       export GIN_MODE=release
+backend   |  - using code:      gin.SetMode(gin.ReleaseMode)
+backend   |
+backend   | [GIN-debug] GET    /ping                     --> server/router.pingpong (4 handlers)
+backend   | [GIN-debug] GET    /messages                 --> server/controller.GetMessages (4 handlers)
+backend   | [GIN-debug] POST   /messages                 --> server/controller.CreateMessage (4 handlers)
+backend   | [GIN-debug] Listening and serving HTTP on :8080
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:40 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:40 +0000] "GET /static/css/main.9ee2e4df.chunk.css HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:40 +0000] "GET /static/js/2.43ca3586.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:40 +0000] "GET /static/js/main.fa448335.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:40 +0000] "GET /static/media/toskalogo.c0f35cf0.svg HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:40 +0000] "GET /manifest.json HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:40 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:45 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:45 +0000] "GET /static/css/main.9ee2e4df.chunk.css HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:45 +0000] "GET /static/js/2.43ca3586.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:45 +0000] "GET /static/js/main.fa448335.chunk.js HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:45 +0000] "GET /static/media/toskalogo.c0f35cf0.svg HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:45 +0000] "GET /manifest.json HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx     | 172.26.0.1 - - [06/Mar/2022:06:51:46 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+nginx exited with code 0
+nginx exited with code 0
+frontend exited with code 137
+frontend exited with code 0
+backend exited with code 137
+backend exited with code 0
+postgres  | 2022-03-06 06:53:17.657 UTC [1] LOG:  received fast shutdown request
+postgres  | 2022-03-06 06:53:17.689 UTC [1] LOG:  aborting any active transactions
+redis     | 1:signal-handler (1646549597) Received SIGTERM scheduling shutdown...
+postgres  | 2022-03-06 06:53:17.710 UTC [1] LOG:  background worker "logical replication launcher" (PID 34) exited with exit code 1
+postgres  | 2022-03-06 06:53:17.711 UTC [29] LOG:  shutting down
+redis     | 1:M 06 Mar 2022 06:53:17.750 # User requested shutdown...
+redis     | 1:M 06 Mar 2022 06:53:17.750 * Saving the final RDB snapshot before exiting.
+redis     | 1:M 06 Mar 2022 06:53:17.777 * DB saved on disk
+redis     | 1:M 06 Mar 2022 06:53:17.778 # Redis is now ready to exit, bye bye...
+postgres  | 2022-03-06 06:53:18.132 UTC [1] LOG:  database system is shut down
+redis exited with code 0
+postgres exited with code 0
+
+$ docker-compose down
+[+] Running 6/6
+ - Container frontend  Removed                                                                                                                            10.8s
+ - Container nginx     Removed                                                                                                                             1.6s
+ - Container backend   Removed                                                                                                                            12.8s
+ - Container redis     Removed                                                                                                                             1.0s
+ - Container postgres  Removed                                                                                                                             1.4s
+ - Network 29_default  Removed                                                                                                                             0.3s
+```
