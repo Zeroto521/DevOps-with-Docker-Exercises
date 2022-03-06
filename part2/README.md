@@ -540,4 +540,125 @@ backend   | [GIN] 2022/03/05 - 11:01:26 | 200 |      1.9737ms |      172.23.0.1 
 
 ### Exercise 2.7
 
-The source codes under [2.7](2.7) folder are copied from [ml-kurkkumopo-frontend](https://github.com/docker-hy/ml-kurkkumopo-frontend), [ml-kurkkumopo-backend](https://github.com/docker-hy/ml-kurkkumopo-backend) and [ml-kurkkumopo-training](https://github.com/docker-hy/ml-kurkkumopo-training).
+The source codes under [2.7](2.7) folder are copied from [ml-kurkkumopo-frontend](https://github.com/docker-hy/ml-kurkkumopo-frontend), [ml-kurkkumopo-backend](https://github.com/docker-hy/ml-kurkkumopo-backend) and [ml-kurkkumopo-training](https://github.com/docker-hy/ml-kurkkumopo-training) except docker-compose.yml.
+
+```bash
+$ cd 2.7
+$ docker-compose up
+[+] Building 1815.1s (23/23) FINISHED
+ => [27_backend internal] load build definition from Dockerfile                                                                          0.1s
+ => => transferring dockerfile: 381B                                                                                                     0.0s 
+ => [27_training internal] load build definition from Dockerfile                                                                         0.1s 
+ => => transferring dockerfile: 391B                                                                                                     0.0s 
+ => [27_backend internal] load .dockerignore                                                                                             0.0s
+ => => transferring context: 2B                                                                                                          0.0s 
+ => [27_training internal] load .dockerignore                                                                                            0.1s
+ => => transferring context: 134B                                                                                                        0.0s 
+ => [27_training internal] load metadata for docker.io/library/python:3.6.7-slim                                                         3.3s 
+ => [auth] library/python:pull token for registry-1.docker.io                                                                            0.0s
+ => [27_backend 1/9] FROM docker.io/library/python:3.6.7-slim@sha256:abedac233d506b945b377f3846900b7cebb2f23e724226ee6a59032cb3039057    0.0s
+ => [27_training internal] load build context                                                                                            0.1s 
+ => => transferring context: 126.82kB                                                                                                    0.0s 
+ => [27_backend internal] load build context                                                                                             0.1s 
+ => => transferring context: 2.44kB                                                                                                      0.0s
+ => CACHED [27_training 2/9] WORKDIR /src                                                                                                0.0s 
+ => CACHED [27_training 3/9] RUN apt-get update                                                                                          0.0s 
+ => CACHED [27_training 4/9] RUN apt-get install ffmpeg libsm6 libxext6 -y                                                               0.0s 
+ => CACHED [27_backend 5/9] COPY ./requirements.txt ./requirements.txt                                                                   0.0s 
+ => CACHED [27_backend 6/9] RUN pip install --upgrade pip                                                                                0.0s 
+ => CACHED [27_backend 7/9] RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple                                 0.0s 
+ => [27_backend 8/9] RUN pip install -r requirements.txt                                                                              1787.9s
+ => CACHED [27_training 5/9] COPY ./requirements.txt ./requirements.txt                                                                  0.0s 
+ => CACHED [27_training 6/9] RUN pip install --upgrade pip                                                                               0.0s 
+ => CACHED [27_training 7/9] RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple                                0.0s 
+ => [27_training 8/9] RUN pip install -r requirements.txt                                                                             1779.7s 
+ => [27_training 9/9] COPY . .                                                                                                           0.2s 
+ => [27_backend] exporting to image                                                                                                     23.2s 
+ => => exporting layers                                                                                                                 23.1s 
+ => => writing image sha256:3640fa68b47613a227cb7cc697075a1227a3046d8fb78dd068cb73f3e1b27a70                                             0.0s 
+ => => naming to docker.io/library/27_training                                                                                           0.0s 
+ => => writing image sha256:a43656794ff5241b5a8fba60b76ebf7e39cd4d57e2c8687ffc9a23d60612e5ec                                             0.0s 
+ => => naming to docker.io/library/27_backend                                                                                            0.0s 
+ => [27_backend 9/9] COPY . .                                                                                                            0.1s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+[+] Running 6/6
+ - Network 27_default  Created                                                                                                           0.1s
+ - Volume "27_model"   Created                                                                                                           0.0s
+ - Volume "27_imgs"    Created                                                                                                           0.0s
+ - Container training  Created                                                                                                           0.3s
+ - Container backend   Created                                                                                                           0.4s
+ - Container frontend  Created                                                                                                           0.3s
+Attaching to backend, frontend, training
+training  | 2022-03-06 00:39:22.201109: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+training  | 2022-03-06 00:39:22.201218: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+backend   | 2022-03-06 00:39:23.526459: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+backend   | 2022-03-06 00:39:23.526554: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+frontend  | INFO: Accepting connections at http://localhost:3000
+backend   | Backend starting
+backend   | No model in the model volume. Waiting for training service to provide one.
+training  | Gathering cucumbers...
+Gathering cucumbers...:  99%|█████████▊| 210/213 [01:07<00:00,  5.24cucumbers/s]Gathering mopeds...
+Gathering cucumbers...: 100%|██████████| 213/213 [01:07<00:00,  3.18cucumbers/s]
+Gathering mopeds...: 100%|██████████| 213/213 [01:23<00:00,  2.56mopeds/s]
+training  | 2022-03-06 00:41:58.563274: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+training  | 2022-03-06 00:41:58.563416: W tensorflow/stream_executor/cuda/cuda_driver.cc:326] failed call to cuInit: UNKNOWN ERROR (303)
+training  | 2022-03-06 00:41:58.563484: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (b7a083e3089c): /proc/driver/nvidia/version does not exist
+training  | 2022-03-06 00:41:58.564241: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+training  | To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+training  | 2022-03-06 00:41:58.986870: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
+training  | 2022-03-06 00:41:58.988109: I tensorflow/core/platform/profile_utils/cpu_utils.cc:114] CPU Frequency: 1799995000 Hz
+training  | Epoch 1/10
+training  | 2022-03-06 00:42:01.026217: W tensorflow/core/framework/cpu_allocator_impl.cc:80] Allocation of 128000000 exceeds 10% of free system memory.
+ 1/12 [=>............................] - ETA: 31s - loss: 0.8242 - accuracy: 0.37502022-03-06 00:42:01.963280: W tensorflow/core/framework/cpu_allocator_impl.cc:80] Allocation of 128000000 exceeds 10% of free system memory.
+ 2/12 [====>.........................] - ETA: 7s - loss: 0.6056 - accuracy: 0.5938 2022-03-06 00:42:02.738028: W tensorflow/core/framework/cpu_allocator_impl.cc:80] Allocation of 128000000 exceeds 10% of free system memory.
+ 3/12 [======>.......................] - ETA: 6s - loss: 0.6785 - accuracy: 0.60422022-03-06 00:42:03.481021: W tensorflow/core/framework/cpu_allocator_impl.cc:80] Allocation of 128000000 exceeds 10% of free system memory.
+ 4/12 [=========>....................] - ETA: 6s - loss: 0.6207 - accuracy: 0.64842022-03-06 00:42:04.235179: W tensorflow/core/framework/cpu_allocator_impl.cc:80] Allocation of 128000000 exceeds 10% of free system memory.
+12/12 [==============================] - 9s 530ms/step - loss: 0.5097 - accuracy: 0.7549
+training  | Epoch 2/10
+12/12 [==============================] - 5s 421ms/step - loss: 0.2636 - accuracy: 0.9099
+training  | Epoch 3/10
+12/12 [==============================] - 5s 395ms/step - loss: 0.1431 - accuracy: 0.9577
+training  | Epoch 4/10
+12/12 [==============================] - 5s 388ms/step - loss: 0.0859 - accuracy: 0.9775
+training  | Epoch 5/10
+12/12 [==============================] - 5s 441ms/step - loss: 0.0902 - accuracy: 0.9831
+training  | Epoch 6/10
+12/12 [==============================] - 5s 391ms/step - loss: 0.0876 - accuracy: 0.9803
+training  | Epoch 7/10
+12/12 [==============================] - 4s 360ms/step - loss: 0.0918 - accuracy: 0.9690
+training  | Epoch 8/10
+12/12 [==============================] - 4s 344ms/step - loss: 0.0783 - accuracy: 0.9831
+training  | Epoch 9/10
+12/12 [==============================] - 4s 353ms/step - loss: 0.0671 - accuracy: 0.9887
+training  | Epoch 10/10
+12/12 [==============================] - 4s 370ms/step - loss: 0.1476 - accuracy: 0.9465
+2/2 [==============================] - 0s 73ms/step - loss: 1.4286 - accuracy: 0.6984
+training  | 2022-03-06 00:42:51.102761: W tensorflow/python/util/util.cc:348] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.
+backend   | 2022-03-06 00:42:53.007021: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+backend   | 2022-03-06 00:42:53.007117: W tensorflow/stream_executor/cuda/cuda_driver.cc:326] failed call to cuInit: UNKNOWN ERROR (303)
+backend   | 2022-03-06 00:42:53.007157: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (d1ec7c79a2ae): /proc/driver/nvidia/version does not exist
+backend   | 2022-03-06 00:42:53.008105: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+backend   | To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+training exited with code 0
+backend   |  * Serving Flask app 'app' (lazy loading)
+backend   |  * Environment: production
+backend   |    WARNING: This is a development server. Do not use it in a production deployment.
+backend   |    Use a production WSGI server instead.
+backend   |  * Debug mode: on
+backend   |  * Running on all addresses.
+backend   |    WARNING: This is a development server. Do not use it in a production deployment.
+backend   |  * Running on http://172.27.0.3:5000/ (Press CTRL+C to quit)
+backend   |  * Restarting with stat
+backend   | 2022-03-06 00:42:55.279949: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+backend   | 2022-03-06 00:42:55.280032: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+backend   | 2022-03-06 00:42:58.212462: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+backend   | 2022-03-06 00:42:58.212558: W tensorflow/stream_executor/cuda/cuda_driver.cc:326] failed call to cuInit: UNKNOWN ERROR (303)
+backend   | 2022-03-06 00:42:58.212597: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (d1ec7c79a2ae): /proc/driver/nvidia/version does not exist
+backend   | 2022-03-06 00:42:58.213027: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+backend   | To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+backend   |  * Debugger is active!
+backend   |  * Debugger PIN: 112-276-044
+backend   | 172.27.0.1 - - [06/Mar/2022 00:43:39] "POST /kurkkuvaimopo HTTP/1.1" 200 -
+```
