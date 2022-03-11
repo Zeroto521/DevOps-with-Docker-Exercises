@@ -483,27 +483,22 @@ The source codes under [1.12](1.12) folder are copied from [example-frontend](ht
 
 ```bash
 $ docker build ./1.12 -t frontend
-[+] Building 210.2s (15/15) FINISHED
- => [internal] load build definition from Dockerfile                                                                                                                      0.1s 
- => => transferring dockerfile: 345B                                                                                                                                      0.0s 
- => [internal] load .dockerignore                                                                                                                                         0.0s 
- => => transferring context: 34B                                                                                                                                          0.0s 
- => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                          0.0s 
- => [ 1/10] FROM docker.io/library/ubuntu:latest                                                                                                                          0.0s 
- => [internal] load build context                                                                                                                                         0.0s 
- => => transferring context: 1.21kB                                                                                                                                       0.0s 
- => CACHED [ 3/10] COPY . .                                                                                                                                               0.0s 
- => CACHED [ 4/10] RUN apt-get update                                                                                                                                     0.0s 
- => CACHED [ 5/10] RUN apt-get install -y curl                                                                                                                            0.0s 
- => CACHED [ 6/10] RUN curl -sL https://deb.nodesource.com/setup_16.x | bash                                                                                              0.0s 
- => CACHED [ 7/10] RUN apt install -y nodejs                                                                                                                              0.0s 
- => [ 8/10] RUN npm install                                                                                                                                             150.7s 
- => [ 9/10] RUN npm run build                                                                                                                                            34.2s 
- => [10/10] RUN npm install -g serve                                                                                                                                      7.6s 
- => exporting to image                                                                                                                                                   17.5s 
- => => exporting layers                                                                                                                                                  17.5s 
- => => writing image sha256:09a4c0fe37793a77a6cb8a3090afac28941d3b5b1edfab4ba871bd767a4283d2                                                                              0.0s 
- => => naming to docker.io/library/frontend                                                                                                                               0.0s 
+[+] Building 320.6s (12/12) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                      0.1s
+ => => transferring context: 34B                                                                                                                          0.0s
+ => [internal] load metadata for docker.io/library/node:16                                                                                                2.1s
+ => [1/6] FROM docker.io/library/node:16@sha256:61b6cc81ecc3f94f614dca6bfdc5262d15a6618f7aabfbfc6f9f05c935ee753c                                          0.0s
+ => [internal] load build context                                                                                                                         0.1s
+ => => transferring context: 725.30kB                                                                                                                     0.0s
+ => CACHED [2/6] WORKDIR /usr/src/app                                                                                                                     0.0s
+ => [3/6] COPY . .                                                                                                                                        0.1s
+ => [4/6] RUN npm install                                                                                                                               205.7s
+ => [5/6] RUN npm run build                                                                                                                              32.9s
+ => [6/6] RUN npm install -g serve                                                                                                                       13.6s
+ => exporting to image                                                                                                                                   33.1s
+ => => exporting layers                                                                                                                                  33.0s
+ => => writing image sha256:f0b305c0310b057ee5244faccfe4fdd4445a5dbc2c2e68fa93ddd891e36c3f32                                                              0.0s
+ => => naming to docker.io/library/frontend                                                                                                               0.0s
 
 Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
 

@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM node:16
 
 EXPOSE 5000
 
@@ -6,12 +6,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN apt-get update
-RUN apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
-RUN apt install -y nodejs
-
-ENV REACT_APP_BACKEND_URL=http://localhost:8080
+ENV REACT_APP_BACKEND_URL http://localhost:8080
 
 RUN npm install
 RUN npm run build
