@@ -956,7 +956,7 @@ $ docker-compose down
 
 ### Exercise 2.10
 
-The source codes under [2.10](2.10) folder are copied from [example-frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) except docker-compose.yml, nginx.conf and Dockerfile.
+The source codes under [2.10](2.10) folder are copied from [example-frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) except docker-compose.yml and Dockerfile.
 
 ```bash
 $ cd 2.10
