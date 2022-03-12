@@ -3,11 +3,13 @@ version: "3.8"
 services:
   frontend:
     container_name: frontend
-    build: ../../part1/1.12
+    build: ./frontend
     depends_on:
       - backend
     ports:
       - 5000:5000
+    environment:
+      API_URL: http://localhost/api
 
   backend:
     container_name: backend
@@ -46,3 +48,5 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
+    depends_on:
+      - frontend
