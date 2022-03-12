@@ -551,7 +551,7 @@ $ docker run -p 127.0.0.1:8080:8080 backend
 [GIN] 2022/02/28 - 01:27:01 | 200 |        18.6µs |      172.17.0.1 | GET      "/ping"
 ```
 
-### 1.14: Environment
+### Exercise 1.14: Environment
 
 ```bash
 $ docker build ./1.12 -t frontend
