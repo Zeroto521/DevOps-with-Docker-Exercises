@@ -48,3 +48,17 @@ This project is the exercises of the [DevOps with Docker 2022](https://devopswit
   - [Containers in development](https://devopswithdocker.com/part-2/4-containers-in-development)
     - Exercise 2.11
 - [Part 3](https://devopswithdocker.com/part-3)
+  - [Deeper understanding of containers](https://devopswithdocker.com/part-3/1-deeper-understainding-of-containers)
+  - [Deployment pipelines](https://devopswithdocker.com/part-3/2-deployment-pipelines)
+    - Exercise 3.1: A deployment pipeline to Heroku
+    - Exercise 3.2: Building images inside of a container
+  - [Using a non-root user](https://devopswithdocker.com/part-3/3-using-non-root-user)
+    - Exercise 3.3
+  - [Optimizing the image size](https://devopswithdocker.com/part-3/4-optimizing-the-image-size)
+    - Exercise 3.4
+    - Exercise 3.5
+    - Exercise 3.6 part 1: Multi-stage frontend
+    - Exercise 3.6 part 2: Multi-stage backend
+    - Exercise 3.7
+  - [Multi-host environments](https://devopswithdocker.com/part-3/5-multi-host-environments)
+    - Exercise 3.8: Kubernetes
