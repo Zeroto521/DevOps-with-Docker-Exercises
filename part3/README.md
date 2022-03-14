@@ -391,3 +391,17 @@ nginx     | 172.20.0.1 - - [14/Mar/2022:06:10:03 +0000] "GET /api/ping HTTP/1.1"
 backend   | [GIN] 2022/03/14 - 06:10:04 | 200 |      1.3356ms |      172.20.0.6 | GET      "/messages"
 nginx     | 172.20.0.1 - - [14/Mar/2022:06:10:04 +0000] "GET /api/messages HTTP/1.1" 200 37 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
 ```
+
+### Exercise 3.5
+
+```bash
+$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED              SIZE
+34_frontend   latest    eb1841cbd105   About a minute ago   416MB
+34_backend    latest    021691d56253   10 minutes ago       674MB
+33_frontend   latest    d881d9f8fc8f   18 minutes ago       1.21GB
+33_backend    latest    7916a444b781   20 minutes ago       1.07GB
+postgres      latest    d7337c283715   5 days ago           376MB
+redis         latest    0e403e3816e8   10 days ago          113MB
+nginx         latest    c919045c4c2b   12 days ago          142MB
+```
