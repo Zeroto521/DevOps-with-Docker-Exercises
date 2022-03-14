@@ -588,3 +588,82 @@ postgres      latest    d7337c283715   5 days ago          376MB
 redis         latest    0e403e3816e8   10 days ago         113MB
 nginx         latest    c919045c4c2b   12 days ago         142MB
 ```
+
+### Exercise 3.7
+
+```bash
+$ docker build ./3.7 -t curler:alpine
+[+] Building 6.7s (9/9) FINISHED
+ => [internal] load build definition from Dockerfile                                                                               0.1s 
+ => [internal] load .dockerignore                                                                                                  0.0s 
+ => => transferring context: 2B                                                                                                    0.0s 
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                   3.4s 
+ => [1/4] FROM docker.io/library/alpine@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300                    0.0s 
+ => [internal] load build context                                                                                                  0.1s 
+ => => transferring context: 119B                                                                                                  0.0s 
+ => CACHED [2/4] WORKDIR /usr/src/app                                                                                              0.0s 
+ => [3/4] COPY curler.sh .                                                                                                         0.1s 
+ => [4/4] RUN apk add --update curl                                                                                                2.8s 
+ => exporting to image                                                                                                             0.2s 
+ => => exporting layers                                                                                                            0.1s 
+ => => writing image sha256:9144efc9cfeb2fdfac8583f10e5111262d2ff69dbc332f8e143272e1987166f5                                       0.0s 
+ => => naming to docker.io/library/curler:alpine                                                                                   0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED             SIZE
+curler                              alpine    9144efc9cfeb   45 seconds ago      9.97MB
+zeroto521/curler                    latest    8fab2a39fa37   2 weeks ago         123MB
+
+$ docker run -it curler:alpine
+Input website:
+example.com
+Searching..
+<!doctype html>
+<html>
+<head>
+    <title>Example Domain</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+    body {
+        background-color: #f0f0f2;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    }
+    div {
+        width: 600px;
+        margin: 5em auto;
+        padding: 2em;
+        background-color: #fdfdff;
+        border-radius: 0.5em;
+        box-shadow: 2px 3px 7px 2px rgba(0,0,0,0.02);
+    }
+    a:link, a:visited {
+        color: #38488f;
+        text-decoration: none;
+    }
+    @media (max-width: 700px) {
+        div {
+            margin: 0 auto;
+            width: auto;
+        }
+    }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>Example Domain</h1>
+    <p>This domain is for use in illustrative examples in documents. You may use this
+    domain in literature without prior coordination or asking for permission.</p>
+    <p><a href="https://www.iana.org/domains/example">More information...</a></p>
+</div>
+</body>
+</html>
+```
