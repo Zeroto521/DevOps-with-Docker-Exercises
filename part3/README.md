@@ -6,7 +6,7 @@
 
 ### Exercise 3.1: A deployment pipeline to Heroku
 
-Please see [fork project](https://github.com/Zeroto521/docker-hy.github.io) and check the [Heroku Website](https://github.com/Zeroto521/docker-hy.github.io).
+Please see [fork project](https://github.com/Zeroto521/docker-hy.github.io) and check the [Heroku Website](https://devops-with-docker-exercise.herokuapp.com/).
 
 ### Exercise 3.2: Building images inside of a container
 
