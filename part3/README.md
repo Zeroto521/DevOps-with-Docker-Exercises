@@ -667,3 +667,7 @@ Searching..
 </body>
 </html>
 ```
+
+### Exercise 3.8: Kubernetes
+
+![example-application](./3.8/example-application.svg)
